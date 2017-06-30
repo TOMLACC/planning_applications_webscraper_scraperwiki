@@ -42,8 +42,8 @@ require 'csv'
 url = 'http://planning.basildon.gov.uk/online-applications/search.do?action=advanced' #link to the advanced search page on the local authority website
 url_beginning = "http://planning.basildon.gov.uk" #the first bit of the url (ending with "gov.uk")
 council = "Basildon" #specify the council name
-startDate = "01/03/2017" #specify decision date start
-endDate = "10/03/2017" #specify decision date end
+startDate = "01/06/2017" #specify decision date start
+endDate = "10/06/2017" #specify decision date end
 # ALSO, CHECK OPTIONS IN 3 PLACES OF THIS CODE MARKED WITH *****
 # and make a copy of the HTML code regarding selections
 # available under the application type and development type fields
@@ -187,21 +187,21 @@ council_array = Array.new(counting,council)
 # this is to transpose the data in the arrays in order to
 # change the layout of data
 
-# table = [reference_array, altreference_array, received_array, validated_array, address_array, proposal_array, outcome_array, decided_array, links_array, council_array].transpose
-# pp table
+table = [reference_array, altreference_array, received_array, validated_array, address_array, proposal_array, outcome_array, decided_array, links_array, council_array].transpose
+pp table
 
 # this is the loop to save the data in the SQlite table
 
-i = 0
+# i = 0
 
-while i < counting
+# while i < counting
 
-data = { "reference"=>reference_array[i], "altreference" =>altreference_array[i], "received"=>received_array[i], "validated"=>validated_array[i], "address"=>address_array[i], "proposal"=>proposal_array[i], "outcome"=>outcome_array[i], "decided"=>decided_array[i], "links"=>links_array[i], "council"=>council_array[i] }
-unique_keys = [ "reference" ]
-ScraperWiki::save_sqlite(unique_keys, data, table_name = "basildon",verbose=2)
+# data = { "reference"=>reference_array[i], "altreference" =>altreference_array[i], "received"=>received_array[i], "validated"=>validated_array[i], "address"=>address_array[i], "proposal"=>proposal_array[i], "outcome"=>outcome_array[i], "decided"=>decided_array[i], "links"=>links_array[i], "council"=>council_array[i] }
+# unique_keys = [ "reference" ]
+# ScraperWiki::save_sqlite(unique_keys, data, table_name = "basildon",verbose=2)
 
-i = i + 1
-end
+# i = i + 1
+# end
 
 # PART 2
 # THE CODE BELOW FINDS THE PLANNING APPLICATION LINKS AND
@@ -300,20 +300,20 @@ end
 
 # this is to transpose the data in the arrays in order to
 # change the layout
-# table2 = [ref_array, apptype_array].transpose
-# pp table2
+table2 = [ref_array, apptype_array].transpose
+pp table2
 
-i = 0
-counter = ref_array.count
+# i = 0
+# counter = ref_array.count
 
-while i < counter
+# while i < counter
 
-data2 = { "ref"=>ref_array[i], "apptype"=>apptype_array[i] }
-unique_keys2 = [ "ref" ]
-ScraperWiki::save_sqlite(unique_keys2, data2, table_name = "basildonapp",verbose=2)
+# data2 = { "ref"=>ref_array[i], "apptype"=>apptype_array[i] }
+# unique_keys2 = [ "ref" ]
+# ScraperWiki::save_sqlite(unique_keys2, data2, table_name = "basildonapp",verbose=2)
 
-i = i + 1
-end
+# i = i + 1
+# end
 
 # PART 3
 # THE CODE BELOW FINDS THE PLANNING APPLICATION LINKS AND
@@ -412,17 +412,17 @@ end
 
 # this is to transpose the data in the arrays in order to
 # change the layout
-# table2 = [refer_array, apptype_array].transpose
-# pp table2
+table3 = [refer_array, apptype_array].transpose
+pp table3
 
-i = 0
-counter = refer_array.count
+# i = 0
+# counter = refer_array.count
 
-while i < counter
+# while i < counter
 
-data3 = { "refer"=>refer_array[i], "devtype"=>devtype_array[i] }
-unique_keys3 = [ "refer" ]
-ScraperWiki::save_sqlite(unique_keys3, data3, table_name = "basildondev",verbose=2)
+# data3 = { "refer"=>refer_array[i], "devtype"=>devtype_array[i] }
+# unique_keys3 = [ "refer" ]
+# ScraperWiki::save_sqlite(unique_keys3, data3, table_name = "basildondev",verbose=2)
 
-i = i + 1
-end
+# i = i + 1
+# end
