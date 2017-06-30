@@ -43,7 +43,7 @@ url = 'http://planning.basildon.gov.uk/online-applications/search.do?action=adva
 url_beginning = "http://planning.basildon.gov.uk" #the first bit of the url (ending with "gov.uk")
 council = "Basildon" #specify the council name
 startDate = "01/06/2017" #specify decision date start
-endDate = "10/06/2017" #specify decision date end
+endDate = "02/06/2017" #specify decision date end
 # ALSO, CHECK OPTIONS IN 3 PLACES OF THIS CODE MARKED WITH *****
 # and make a copy of the HTML code regarding selections
 # available under the application type and development type fields
