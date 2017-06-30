@@ -289,18 +289,18 @@ links_array.map! do |item|
 	item = "#{url_beginning}#{item}"
 end
 
-ref_array = []
+# ref_array = []
 
-links_array.each do |link|
-ref = link[-13..-1]
-ref_array.push(ref)
-end
+# links_array.each do |link|
+# ref = link[-13..-1]
+# ref_array.push(ref)
+# end
 
 # pp ref_array
 
 # this is to transpose the data in the arrays in order to
 # change the layout
-table2 = [ref_array, apptype_array].transpose
+table2 = [links_array, apptype_array].transpose
 pp table2
 
 # i = 0
@@ -401,18 +401,18 @@ links_array.map! do |item|
 	item = "#{url_beginning}#{item}"
 end
 
-refer_array = []
+# refer_array = []
 
-links_array.each do |link|
-refer = link[-13..-1]
-refer_array.push(refer)
-end
+# links_array.each do |link|
+# refer = link[-13..-1]
+# refer_array.push(refer)
+# end
 
 # pp refer_array
 
 # this is to transpose the data in the arrays in order to
 # change the layout
-table3 = [refer_array, apptype_array].transpose
+table3 = [links_array, devtype_array].transpose
 pp table3
 
 # i = 0
