@@ -39,11 +39,11 @@ require 'mechanize'
 require 'csv'
 
 # SPECIFY YOUR VARIBLES HERE:
-url = 'http://planning.basildon.gov.uk/online-applications/search.do?action=advanced' #link to the advanced search page on the local authority website
-url_beginning = "http://planning.basildon.gov.uk" #the first bit of the url (ending with "gov.uk")
-council = "Basildon" #specify the council name
-startDate = "01/06/2017" #specify decision date start
-endDate = "02/06/2017" #specify decision date end
+url = 'https://publicaccess.westoxon.gov.uk/online-applications/search.do?action=advanced' #link to the advanced search page on the local authority website
+url_beginning = "https://publicaccess.westoxon.gov.uk" #the first bit of the url (ending with "gov.uk")
+council = "West_Oxfordshire" #specify the council name
+startDate = "01/03/2017" #specify decision date start
+endDate = "03/03/2017" #specify decision date end
 # ALSO, CHECK OPTIONS IN 3 PLACES OF THIS CODE MARKED WITH *****
 # and make a copy of the HTML code regarding selections
 # available under the application type and development type fields
@@ -113,7 +113,6 @@ end
 # on individual applications
 reference_array = []
 altreference_array = []
-received_array = []
 validated_array = []
 address_array = []
 proposal_array = []
@@ -150,30 +149,26 @@ links_array.each do |application|
 	altreference_tidied = altreference.strip
 	altreference_array.push(altreference_tidied)
 
-	received = parse_sub_page.css('#simpleDetailsTable').css('td')[2].text
-	received_tidied = received.strip
-	received_array.push(received_tidied)
-
-	validated = parse_sub_page.css('#simpleDetailsTable').css('td')[3].text
+	validated = parse_sub_page.css('#simpleDetailsTable').css('td')[2].text
 	validated_tidied = validated.strip
 	validated_array.push(validated_tidied)
 
-	address = parse_sub_page.css('#simpleDetailsTable').css('td')[4].text
+	address = parse_sub_page.css('#simpleDetailsTable').css('td')[3].text
 	address_tidied = address.strip
 	address_array.push(address_tidied)
 
-	proposal = parse_sub_page.css('#simpleDetailsTable').css('td')[5].text
+	proposal = parse_sub_page.css('#simpleDetailsTable').css('td')[4].text
 	proposal_tidied = proposal.strip
 	proposal_array.push(proposal_tidied)
 	proposal_array.each do |proposal|
 		proposal.gsub(",","")
 	end
 
-	outcome = parse_sub_page.css('#simpleDetailsTable').css('td')[7].text
+	outcome = parse_sub_page.css('#simpleDetailsTable').css('td')[6].text
 	outcome_tidied = outcome.strip
 	outcome_array.push(outcome_tidied)
 
-	decided = parse_sub_page.css('#simpleDetailsTable').css('td')[8].text
+	decided = parse_sub_page.css('#simpleDetailsTable').css('td')[7].text
 	decided_tidied = decided.strip
 	decided_array.push(decided_tidied)
 
@@ -187,7 +182,7 @@ council_array = Array.new(counting,council)
 # this is to transpose the data in the arrays in order to
 # change the layout of data
 
-table = [reference_array, altreference_array, received_array, validated_array, address_array, proposal_array, outcome_array, decided_array, links_array, council_array].transpose
+table = [reference_array, altreference_array, validated_array, address_array, proposal_array, outcome_array, decided_array, links_array, council_array].transpose
 pp table
 
 # this is the loop to save the data in the SQlite table
@@ -196,7 +191,7 @@ pp table
 
 # while i < counting
 
-# data = { "reference"=>reference_array[i], "altreference" =>altreference_array[i], "received"=>received_array[i], "validated"=>validated_array[i], "address"=>address_array[i], "proposal"=>proposal_array[i], "outcome"=>outcome_array[i], "decided"=>decided_array[i], "links"=>links_array[i], "council"=>council_array[i] }
+# data = { "reference"=>reference_array[i], "altreference" =>altreference_array[i], "validated"=>validated_array[i], "address"=>address_array[i], "proposal"=>proposal_array[i], "outcome"=>outcome_array[i], "decided"=>decided_array[i], "links"=>links_array[i], "council"=>council_array[i] }
 # unique_keys = [ "reference" ]
 # ScraperWiki::save_sqlite(unique_keys, data, table_name = "basildon",verbose=2)
 
